@@ -57,6 +57,14 @@
 		border-right: 1px groove #e4e4e4;
 	}
 	
+	#btn{
+		color: black;
+		text-decoration: none;
+	}
+	#btn:hover {
+		color: blue;
+	}
+	
 	#se22 {
 		display: inline-block;
 		text-align: center;
@@ -131,15 +139,14 @@
 		<!-- content start -->
 		<div id="box1">
 			<h2 class="name">교육과정 모집공고</h2>
-			<p>디지털 컨버젼 자바취업반</p>
-			<p>디지털 컨버젼 자바취업반</p>
-			<p>디지털 컨버젼 자바취업반</p>
-			<p>디지털 컨버젼 자바취업반</p>
+			<c:forEach items="${eduMenu }" var="eduMenu">
+			<a href="subList.jb" id="btn"><p>${eduMenu.className }</p></a>
+			</c:forEach>
 		</div>
 
 		<div id="box2">
 			<h2 class="name">취업지원센터</h2>
-			<a href="#"> <img src="./img/btn1.png" alt="" id="box2img" /></a>
+			<a href="jobNoticeList.jb"> <img src="./img/btn1.png" alt="" id="box2img" /></a>
 		</div>
 
 		<div id="box3">
