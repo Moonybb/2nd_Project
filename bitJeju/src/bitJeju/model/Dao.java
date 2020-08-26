@@ -546,7 +546,70 @@ public class Dao {
 		return list;
 	}
 
-	// 마이페이지 학생 출결확인 (1인)
+	
+	
+	// 마이페이지 학생 출결확인 (신)
+	public ArrayList<MyAttendCountDto> stuAttendCount(int hakbun) throws SQLException{
+		ArrayList<MyAttendCountDto> list = new ArrayList<MyAttendCountDto>();
+		String sql = "select stuCheck from attendance where hakbun=?";
+		int checkDay = 0;
+		int missDay = 0;
+		int tardy = 0;
+		try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, hakbun);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			String check = rs.getString("stuCheck");
+			if(check.equals("출석")) {
+				checkDay++;
+			}else if(check.equals("결석")) {
+				missDay++;
+			}else if(check.equals("지각")) {
+				tardy++;
+				if(tardy==3) {
+					tardy=0;
+					missDay++;
+				}
+			}
+		}
+		sql = "select totalDay from studyGroup where hakbun=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, hakbun);
+		rs = pstmt.executeQuery();
+		int totalDay = 0;
+		if(rs.next()) {
+			totalDay = rs.getInt("totalDay");
+			System.out.println(totalDay);
+		}
+		double day = ((totalDay - missDay)/(double)totalDay)*100 ;
+		double rate = (int)(day*100)/100.0;
+		System.out.println("rate ::: "+rate);
+//		System.out.println("-----------------------");
+//		System.out.println("checkDay::"+checkDay);
+//		System.out.println("missDay::"+missDay);
+//		System.out.println("tardy::"+tardy);
+		MyAttendCountDto dto = new MyAttendCountDto();
+		dto.setHakbun(hakbun);
+		dto.setCheckDay(checkDay);
+		dto.setMissDay(missDay);
+		dto.setTardy(tardy);
+		dto.setRate(rate);
+		
+		list.add(dto);
+		System.out.println(list.toString());
+		}finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return list;
+	}
+	
+	// 마이페이지 학생 출결확인 (1인) (구)
 	public ArrayList<StudyGroupDto> stuatt(int hakbun) throws SQLException {
 		ArrayList<StudyGroupDto> list = new ArrayList<StudyGroupDto>();
 		String sql = "select hakbun,name,className,checkDay,missDay,tardy from StudyGroup where hakbun=?";
@@ -799,7 +862,54 @@ public class Dao {
 
 		return list;
 	}
-
+	
+	// 스터디그룹에 출석/결석/지각 별로 카운트
+	public void rateCheck(int hakbun,String stuCheck) throws SQLException {
+		String sql = null;
+		if(stuCheck.equals("출석")) {
+			System.out.println(hakbun+"::::"+stuCheck);
+			sql = "update studyGroup set checkDay=checkDay+1 where hakbun=?";
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, hakbun);
+				pstmt.executeUpdate();
+			}finally {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			}
+			
+		}else if(stuCheck.equals("결석")) {
+			System.out.println(hakbun+"::::"+stuCheck);
+			sql = "update studyGroup set missDay=missDay+1 where hakbun=?";
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, hakbun);
+				pstmt.executeUpdate();
+			}finally {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			}
+		}else if(stuCheck.equals("지각")) {
+			System.out.println(hakbun+"::::"+stuCheck);
+			sql = "update studyGroup set tardy=tardy+1 where hakbun=?";
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, hakbun);
+				pstmt.executeUpdate();
+			}finally {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			}
+		}
+	}
+	
+	
 	// attendanceInsert 페이지에서 입력 값 insert or update해주는 메서드
 	public ArrayList<AttendanceDto> attendanceInsert(Date nalja, int classCode,
 			String className, int hakbun, String name, String stuCheck,
@@ -808,6 +918,8 @@ public class Dao {
 		String sql = "";
 		// 컨트롤러에서 받아온 값에 따라 사용 쿼리문이 바뀐다
 		if (task == "insert") {
+			Dao dao = new Dao();
+			dao.rateCheck(hakbun, stuCheck);
 			sql = "insert into attendance values (?,?,?,?,?,?)";
 			try {
 				pstmt = conn.prepareStatement(sql);
