@@ -1564,5 +1564,26 @@ public class Dao {
 	}
 
 	// ————————————————————————————————————————————//
+	
+	//index교육과정 리스트 목록 select
+	public ArrayList<ClassDto> eduMenuSelect() throws SQLException{
+		ArrayList<ClassDto> list = new ArrayList<ClassDto>();
+		String sql = "select className from classData";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				ClassDto bean = new ClassDto();
+				bean.setClassName(rs.getString("className"));
+				list.add(bean);
+			}
+		}finally {
+			if(rs!=null)rs.close();
+			if(pstmt!=null)pstmt.close();
+			if(conn!=null)conn.close();
+		}
+		return list;
+	
+	}
 
 }
