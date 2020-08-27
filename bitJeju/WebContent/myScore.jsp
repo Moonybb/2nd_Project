@@ -8,10 +8,17 @@
 <%@ include file="template/head.jspf" %>
 <%@ include file="template/myPageMenuOption.jspf" %>
 <style rel="stylesheet" type="text/css">
-	h1{
-		width: 500px;
-		margin: 50px auto;
-		text-align: center;
+	#content > h1{
+      text-align: center;
+      margin: 50px auto 30px auto;
+   }
+   #content > h1:first-letter { 
+      font-size: 45px;
+      border-top: 3px solid blue;
+      padding-top: 2px;
+   }
+	#content{
+		margin: 15px auto;
 	}
 	#classcode, #name, #java, #web, #framework{
 		width:120px;
@@ -43,8 +50,10 @@
 	<%@ include file="template/myPageMenu.jspf" %>
 	
 	<!-- content start -->
-	<h1>${naming } 수강생의 성적 페이지</h1>
 	<div id="content">
+	<c:forEach items="${score}" var="abc">
+		<h1> ${abc.name }의 성적 페이지</h1>
+	</c:forEach>
 		<table>
 			<tr>
 				<th id="classcode">클래스 코드</th>

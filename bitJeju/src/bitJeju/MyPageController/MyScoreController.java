@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import bitJeju.model.Dao;
 import bitJeju.model.StudentDto;
+import bitJeju.model.StudyGroupDto;
 
 @WebServlet("/myScore.jb")
 public class MyScoreController extends HttpServlet {
@@ -23,16 +24,13 @@ public class MyScoreController extends HttpServlet {
 		try {
 			HttpSession session = req.getSession(false);
 			StudentDto bean = (StudentDto) session.getAttribute("sbean");
-			String naming = bean.getName();
-			req.setAttribute("naming", naming);
-
-			Dao dao = new Dao();
 			int hakbun = bean.getHakbun();
-			ArrayList<StudentDto> score =dao.myPageScore(hakbun);
+			
+			Dao dao = new Dao();
+			ArrayList<StudyGroupDto> score = dao.myPageScore(hakbun);
 			req.setAttribute("score", score);
 
-//			System.out.println("myscore hakbun: "+bean.getHakbun());
-//			System.out.println("myscore classCode"+bean.getClassCode());
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
