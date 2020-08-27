@@ -8,11 +8,11 @@ create table studyGroup(
 	gradeJava number(3) default 0,
 	gradeWeb number(3) default 0,
 	gradeFrame number(3) default 0,
-	totalDay number(3) default 0,
+	totalDay number(3) default 90,
 	checkDay number(3) default 0,
 	missDay number(3) default 0,
 	tardy number(3) default 0,
-	rate number(4,1) default 0,
+	rate number(4,1),
 	tcode varchar2(2)
 );
 select * from studyGroup;
