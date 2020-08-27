@@ -29,6 +29,7 @@ public class MyPageAttendController extends HttpServlet {
 			Dao dao=new Dao();
 			ArrayList<MyAttendCountDto> bean=dao.stuAttendCount(hakbun);
 			request.setAttribute("myAttend", bean);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
