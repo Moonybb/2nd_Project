@@ -13,12 +13,13 @@
 </script>
 <style type="text/css">
 	#content {
-		width: 1500px;
+		width: 800px;
 		margin: 10px auto; 
 		margin-top: 50px;
 	}
 	#content > h1{
-		margin-bottom: 40px;
+		margin-top: 50px;
+		margin-bottom: 10px;
 	}
 	#content > h1:first-letter { 
 		font-size: 45px;
@@ -28,7 +29,10 @@
 	#top {
 		width: 100%;
 	}
-	#content > table {
+	#toCoach{
+		width: 100%;
+	}
+	/* #content > table {
 		width: 100%;
 		text-align:center;
 	}
@@ -61,7 +65,7 @@
 	}
 	#className{
 		width: 300px;
-	}
+	} */
 </style>
 </head>
 <body>
@@ -69,8 +73,9 @@
 	<img id="top" src="img/adminPage.jpeg"/>
 	<div id="content">
 	<h1>관리자 페이지</h1>
+	<img id="toCoach"src="img/toCoach.png"/>
 		<!-- content start -->
-		<table>
+		<!-- <table>
 			<tr>
 				<th id="hakbun">학번</th>
 				<th id="name">이름</th>
@@ -91,7 +96,7 @@
 				<td>80.33</td>
 				<td>93.22%</td>
 			</tr>
-		</table>
+		</table> -->
 		<!-- content end -->
 	</div>
 	
