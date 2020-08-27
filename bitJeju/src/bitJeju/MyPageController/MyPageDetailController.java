@@ -24,7 +24,7 @@ public class MyPageDetailController extends HttpServlet {
 		try {
 			Dao dao = new Dao();
 			
-			ArrayList<StudentDto> jeongbo=dao.myPageScore(naming.getHakbun());
+			ArrayList<StudentDto> jeongbo=dao.myPageIntro(naming.getHakbun());
 			req.setAttribute("jeongbo", jeongbo);
 		} catch (SQLException e) {
 			e.printStackTrace();

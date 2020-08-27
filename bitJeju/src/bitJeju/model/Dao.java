@@ -389,7 +389,7 @@ public class Dao {
 	}
 
 	// 마이페이지 - 한명의 정보만 select
-	public ArrayList<StudentDto> myPageScore(int hakbun) {
+	public ArrayList<StudentDto> myPageIntro(int hakbun) {
 
 		String sql = "select * from stuData where hakbun=?";
 
@@ -413,6 +413,47 @@ public class Dao {
 				bean.setGradeWeb(rs.getInt("gradeWeb"));
 				bean.setGradeFrame(rs.getInt("gradeFrame"));
 				bean.setPw(rs.getString("pw"));
+				list.add(bean);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+	}
+	
+	// 마이페이지에서 본인의 점수 select 
+	public ArrayList<StudyGroupDto> myPageScore(int hakbun) {
+
+		String sql = "select * from studyGroup where hakbun=?";
+
+		StudyGroupDto bean = new StudyGroupDto();
+		ArrayList<StudyGroupDto> list = new ArrayList<StudyGroupDto>();
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, hakbun);
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				bean.setClassCode(rs.getInt("classCode"));
+				bean.setHakbun(rs.getInt("hakbun"));
+				bean.setName(rs.getString("name"));
+				bean.setGradeJava(rs.getInt("gradeJava"));
+				bean.setGradeWeb(rs.getInt("gradeWeb"));
+				bean.setGradeFrame(rs.getInt("gradeFrame"));
 				list.add(bean);
 			}
 
