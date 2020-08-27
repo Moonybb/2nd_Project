@@ -1485,8 +1485,7 @@ public class Dao {
 		return list;
 	}
 
-	// ------------------------------------- 수강신청
-	// --------------------------------------------//
+	// ------------------------------------- 수강신청 --------------------------------------------//
 	// 최초 수강신청
 	public int applyBySub(int hakbun, String name, int classCode,
 			String className, String tcode) throws SQLException {
@@ -1531,9 +1530,10 @@ public class Dao {
 		return check;
 	}
 
-	// -----------------------------------------------------------------------------------------//
-	// ------------------------------------- 학생배정
-	// --------------------------------------------//
+	// -------------------------------------------- 학생배정 --------------------------------------------//
+	
+	// 학생배정 페이지로 이동 시 수강신청한 학생들을 select ( temp == 1 ) 수강신청을 하면 temp=2로 update하고 studyGroup에 insert
+	// 삭제하지 않고 update하는 이유는 중복신청도 막아야 하기 때문
 	public ArrayList<StuAssignmentDto> stuAssignmentSelect()
 			throws SQLException {
 		ArrayList<StuAssignmentDto> list = new ArrayList<StuAssignmentDto>();
@@ -1562,8 +1562,53 @@ public class Dao {
 		}
 		return list;
 	}
+	
+	// 수강신청을 하고 관리자가 승인버튼 클릭시 studyGroup에 insert
+	public int studyGroupInsert(int hakbun, String name, String tcode, int classCode, String className) throws SQLException {
+		String sql = "insert into studyGroup (hakbun, name, tcode, classCode, className) values (?,?,?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, hakbun);
+			pstmt.setString(2, name);
+			pstmt.setString(3, tcode);
+			pstmt.setInt(4, classCode);
+			pstmt.setString(5, className);
+			pstmt.executeUpdate();
+			
+		}finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+		return 1; // 성공시 1 반환
+	}
+	
+	// 관리자가 승인버튼 클릭 시 stuAssignment 테이블의 승인된 학생의 temp를 9로 변경 --> 학생배정 페이지에서 temp==1인 신청 학생들만 가져오기 때문
+	// 삭제를 하지 않는 이유는 중복 수강신청을 막기 위함
+	public void stuAssignmentChangeTemp(int hakbun) throws SQLException {
+		String sql = "update stuAssignment set temp=9 where hakbun=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, hakbun);
+			pstmt.executeUpdate();
+		}finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+	}
+	
+	
 
-	// ————————————————————————————————————————————//
+	// ————————————————————————————————————————————--------------------------------------------------------//
 	
 	//index교육과정 리스트 목록 select
 	public ArrayList<ClassDto> eduMenuSelect() throws SQLException{

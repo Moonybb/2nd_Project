@@ -74,6 +74,7 @@
 				<th id="assign">승인</th>
 			</tr>
 			<c:forEach items="${list }" var="bean">
+			<form action="stuAssignment.jb" method="post">
 			<tr>
 				<td>${bean.hakbun }</td>
 				<td>${bean.name }</td>
@@ -81,7 +82,15 @@
 				<td>${bean.className }</td>
 				<td>${bean.applyDate }</td>
 				<td><button type="submit">승인</button></td>
+				
+				<input type="hidden" name="hakbun" value="${bean.hakbun }"/>
+				<input type="hidden" name="name" value="${bean.name }"/>
+				<input type="hidden" name="classCode" value="${bean.classCode }"/>
+				<input type="hidden" name="className" value="${bean.className }"/>
+				<input type="hidden" name="tcode" value="${bean.tcode }"/>
+
 			</tr>
+			</form>
 			</c:forEach>
 		</table>
 		<!-- content end  --> 
