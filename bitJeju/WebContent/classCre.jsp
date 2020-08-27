@@ -32,6 +32,9 @@
       border: 5px solid white;
       border-radius: 10px;
    }
+   #imgSelect{
+   		margin-right: 40px;
+   }
    input{
       width: 150px;
    }   
@@ -68,7 +71,8 @@
       <!-- content start -->
       <form method="post">
          <div>
-            <input type="file" value="파일 선택" name="filePath"/>
+	         <label id="imgSelect" for="filePath">타이틀 이미지</label>
+     	     <input type="file" value="파일 선택" name="filePath"/>
          </div>
          <div>
             <label for="className">과정명</label>
