@@ -71,7 +71,7 @@ public class SubDetailController extends HttpServlet {
 					out.println("<script type=\"text/javascript\" src=\"js/jquery-1.12.4.js\"></script>");
 					out.println("<script type=\"text/javascript\" >");
 					out.println("$(document).ready(function(){");
-					out.println("alert(\"수강신청이 완료되었습니다.\");");
+					out.println("alert(\"수강신청이 완료되었습니다.\\n다른 과정을 수강신청 할 수 없습니다.\");");
 					out.println("location.href='subList.jb'});");
 					out.println("</script>");
 				}else {
@@ -79,7 +79,7 @@ public class SubDetailController extends HttpServlet {
 					out.println("<script type=\"text/javascript\" src=\"js/jquery-1.12.4.js\"></script>");
 					out.println("<script type=\"text/javascript\" >");
 					out.println("$(document).ready(function(){");
-					out.println("alert(\"이미 수강신청을 하셨습니다.\");");
+					out.println("alert(\"이미 수강신청을 하셨습니다. \\n고객센터에 문의하십시오\");");
 					out.println("history.back()");
 					out.println("});");
 					out.println("</script>");
