@@ -90,12 +90,14 @@
 		margin-right: 10px;
 	}
 	#area > textarea{
-		width: 780px;
+		width: 775px;
 		height: 450px;
 		margin: 10px 10px;
 		margin-top: 30px;
 		padding: 15px 15px;
 </style>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="script/bbsTextCheck.js"></script>
 </head>
 <body>
 	<%@ include file="/template/header.jspf"%>
@@ -109,7 +111,7 @@
 					공지명 : <input type="text" name="title" />
 				</div>
 				<div id="area">
-					<textarea name="contents"></textarea>
+					<textarea name="contents"  style="resize: none"></textarea>
 				</div>
 				<div id="btn">
 					<button class="button" type="submit">작성</button>

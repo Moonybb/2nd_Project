@@ -1381,12 +1381,14 @@ public class Dao {
 
 	// 채용공고 수정
 	public void jobNoticeModify(JobNoticeDto jobNoticeDto) throws SQLException {
-		String sql = "update jobNotice set title=?, contents=? where jobNoticeNum=?";
+		String sql = "update jobNotice set title=?, contents=?, company=?, endDay=? where jobNoticeNum=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, jobNoticeDto.getTitle());
 			pstmt.setString(2, jobNoticeDto.getContents());
-			pstmt.setInt(3, jobNoticeDto.getJobNoticeNum());
+			pstmt.setString(3, jobNoticeDto.getCompany());
+			pstmt.setDate(4, jobNoticeDto.getEndDay());
+			pstmt.setInt(5, jobNoticeDto.getJobNoticeNum());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

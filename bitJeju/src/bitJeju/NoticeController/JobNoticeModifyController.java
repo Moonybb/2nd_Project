@@ -1,6 +1,7 @@
 package bitJeju.NoticeController;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -38,13 +39,17 @@ public class JobNoticeModifyController extends HttpServlet {
 		
 		String title = request.getParameter("title");
 		String contents = request.getParameter("contents");
+		String company = request.getParameter("company");
+		String temp = request.getParameter("endDay");
+		Date endDay = Date.valueOf(temp);
+		System.out.println(company+endDay);
 		
 		JobNoticeDto jobNoticeDto = new JobNoticeDto();
 		jobNoticeDto.setJobNoticeNum(Integer.parseInt(jobNoticeNum));
-		System.out.println((Integer.parseInt(jobNoticeNum))+100);
 		jobNoticeDto.setTitle(title);
 		jobNoticeDto.setContents(contents);
-		
+		jobNoticeDto.setCompany(company);
+		jobNoticeDto.setEndDay(endDay);
 		Dao dao =null;
 		try {
 			dao = new Dao();
@@ -53,6 +58,5 @@ public class JobNoticeModifyController extends HttpServlet {
 			e.printStackTrace();
 		}
 		response.sendRedirect("jobNoticeRead.jb?jobNoticeNum="+jobNoticeNum);
-				//request.getRequestDispatcher("/noticeRead.jb?"+"noticeNum="+noticeNum).forward(request, response);
 	}
 }

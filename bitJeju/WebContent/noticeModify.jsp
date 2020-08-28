@@ -92,6 +92,8 @@
 		padding: 15px 15px;
 	}
 </style>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="script/bbsTextModify.js"></script>
 </head>
 <body>
 	<%@ include file="/template/header.jspf" %>
@@ -109,7 +111,7 @@
 				<span id="cnt">조회수   ${notice.cnt }</span>
 			</div>
 			<div id="area">
-				<textarea name="contents" class="contents">${notice.contents }</textarea>
+				<textarea name="contents" class="contents"  style="resize: none">${notice.contents }</textarea>
 			</div>
 			<div id="btn">	
 				<button type = "submit">작성</button>

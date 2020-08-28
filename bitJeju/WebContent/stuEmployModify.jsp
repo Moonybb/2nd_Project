@@ -93,6 +93,8 @@ e<%@ page language="java" contentType="text/html; charset=UTF-8"
 		padding: 15px 15px;
 	}
 </style>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="script/bbsTextModify.js"></script>
 </head>
 <body>
 	<%@ include file="/template/header.jspf" %>
@@ -109,7 +111,7 @@ e<%@ page language="java" contentType="text/html; charset=UTF-8"
 				<span id="cnt">작성일  |   ${bean.writedDate }</span>
 			</div>
 			<div id="area">
-				<textarea name="contents" class="contents">${bean.contents }</textarea>
+				<textarea name="contents" class="contents"  style="resize: none">${bean.contents }</textarea>
 			</div>
 			<div id="btn">	
 				<button type = "submit">작성</button>

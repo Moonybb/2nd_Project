@@ -68,6 +68,8 @@
 		padding: 15px 15px;
 	}
 </style>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="script/bbsTextCheck.js"></script>
 </head>
 <body>
 	<%@ include file="/template/header.jspf" %>
@@ -79,7 +81,7 @@
 			 	제목<input type="text" name="title" />
 			</div>
 			<div id="area">
-				<textarea name="contents" class="contents"></textarea>
+				<textarea name="contents" class="contents"  style="resize: none"></textarea>
 			</div>
 			<div id="btn">	
 				<button class="button" type="submit">작성</button>

@@ -66,15 +66,18 @@
 		border-bottom: 1px solid lightgray;
 		margin-bottom: 10px;
 	}
-	#compony{
+	#company{
 		float:left;
+	}
+	#inputCompany{
+		maring-right: 10px;
 	}
 	#endDay {
 		margin-left: 100px;
 	}
 	#intro input{
-		margin-left:10px;
-		width: 250px;
+		margin-left: 47px;
+		width: 221px;
 		height: 30px;
 		padding: 0px;
 		border: 1px solid gray;
@@ -95,6 +98,8 @@
 		padding: 15px 15px;
 	}
 </style>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="script/bbsTextCheck.js"></script>
 </head>
 <body>
 	<%@ include file="/template/header.jspf" %>
@@ -107,11 +112,11 @@
 			공고명<input type="text" name="title"/>
 		</div>
 		<div id="intro">
-			<span id="compony">업체명 &nbsp;<input class="input" type="text" name="company" id="company"/></span>
-			<span id="endDay">마감일 &nbsp;<input class="input" type="date" name="endDay" id="endDay"/></span>
+			<span id="company">업체명 &nbsp;<input class="input" type="text" name="company" id="inputCompany"/></span>
+			<span id="endDay">마감일 &nbsp;<input class="input" type="date" name="endDay" id="inputEndDay"/></span>
 		</div>
 		<div id="area">
-			<textarea name="contents"></textarea>
+			<textarea name="contents" style="resize: none"></textarea>
 		</div>
 		<div id="btn">
 			<button class="button" type="submit">작성</button>

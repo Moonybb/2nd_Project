@@ -76,6 +76,9 @@
 		text-align:right;
 	}
 </style>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript">
+</script>
 </head>
 <body>
 	<%@ include file="/template/header.jspf" %>
@@ -84,7 +87,7 @@
 		<!-- content start -->
 			<h1>공지사항</h1>
 			<div>
-				<div id="title">
+				<div id="title" name="bbsTitle">
 					${notice.title }
 				</div>
 				<div id="intro">

@@ -92,6 +92,8 @@
 		padding: 15px 15px;
 	}
 </style>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="script/bbsTextModify.js"></script>
 </head>
 <body>
 	<%@ include file="/template/header.jspf" %>
@@ -104,11 +106,11 @@
 			</div>
 			<div id="intro">		
 				<span id="writer">작성자 | ${bean.writer }</span>
-				<span id="date"></span>
-				<span id="cnt">조회수   ${bean.endDay }</span>
+				<span id="date">업체명 | <input type ="text" name="company"value="${bean.company }" id="inputCompany"/></span>
+				<span id="cnt">마감일 | <input type="date" name="endDay"value="${bean.endDay }"/></span>
 			</div>
 			<div id="area">
-				<textarea name="contents" class="contents">${bean.contents }</textarea>
+				<textarea name="contents" class="contents"  style="resize: none">${bean.contents }</textarea>
 			</div>
 			<div id="btn">	
 				<button type = "submit">작성</button>
