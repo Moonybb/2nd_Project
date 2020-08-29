@@ -1,6 +1,6 @@
 DROP TABLE jobNotice;
 DROP sequence jobNotice_seq;
-CREATE sequence jobNotice_seq start with 1;
+CREATE sequence jobNotice_seq start with 1 increment by 1;
 CREATE TABLE jobNotice(
     jobNoticeNum    NUMBER(5)	NOT NULL,
     writer	 	VARCHAR2(30)	default '비트캠프',

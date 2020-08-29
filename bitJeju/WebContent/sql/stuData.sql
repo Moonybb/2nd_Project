@@ -1,6 +1,6 @@
 drop table studata;
 drop sequence stuData_seq;
-create sequence stuData_seq start with 1;
+create sequence stuData_seq start with 1 increment by 1;
 create table stuData(
    hakbun number(4) primary key,
    name varchar2(15) not null,

@@ -1,6 +1,6 @@
 DROP TABLE notice;
 DROP sequence notice_seq;
-CREATE sequence notice_seq start with 1;
+CREATE sequence notice_seq start with 1 increment by 1;
 CREATE TABLE notice(
     noticeNum     NUMBER(5)         NOT NULL, 
     title         VARCHAR2(60)      NOT NULL, 
