@@ -61,6 +61,10 @@ public class AttendanceInputController extends HttpServlet {
 			try {
 				dao = new Dao();
 				dao.attendanceInsert(nalja,classCode,className,hakbun,name,stuCheck, task);
+				dao = new Dao();
+				double rate = dao.rateUpdate1(hakbun);
+				dao = new Dao();
+				dao.rateUpdate2(hakbun, rate);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

@@ -712,6 +712,74 @@ public class Dao {
 	}
 
 	// 강사전용 출석 관리 ////////////////////////////////////////////
+	
+	// 강사가 출석 insert할 때 studyGroup 에 rate 업데이트 
+	public double rateUpdate1(int hakbun) throws SQLException {
+		String sql = "select stuCheck from attendance where hakbun=?";
+		int checkDay = 0;
+		int missDay = 0;
+		int tardy = 0;
+		try {
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, hakbun);
+		rs = pstmt.executeQuery();
+		while(rs.next()) {
+			String check = rs.getString("stuCheck");
+			if(check.equals("출석")) {
+				checkDay++;
+			}else if(check.equals("결석")) {
+				missDay++;
+			}else if(check.equals("지각")) {
+				tardy++;
+				if(tardy==3) {
+					tardy=0;
+					missDay++;
+				}
+			}
+		}
+		sql = "select totalDay from studyGroup where hakbun=?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, hakbun);
+		rs = pstmt.executeQuery();
+		int totalDay = 0;
+		if(rs.next()) {
+			totalDay = rs.getInt("totalDay");
+			System.out.println(totalDay);
+		}
+		double day = ((totalDay - missDay)/(double)totalDay)*100 ;
+		double rate = (int)(day*100)/100.0;
+		return rate;
+		
+		}finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+	}
+	
+	// 강사가 입력했을 때 rate를 studyGroup에 update
+	public void rateUpdate2 (int hakbun, double rate) throws SQLException {
+		String sql = "update studyGroup set rate=? where hakbun=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDouble(1, rate);
+			pstmt.setInt(2, hakbun);
+			pstmt.executeUpdate();
+		}finally {
+			if (rs != null)
+				rs.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+	}
+	
+	
 	public ArrayList<AttendanceDto> attendanceClass(String tcode)
 			throws SQLException {
 		ArrayList<AttendanceDto> list = new ArrayList<AttendanceDto>();
