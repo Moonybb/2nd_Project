@@ -38,18 +38,16 @@ $(document).ready(function() {
 				}
 				text = text.replace(/(\r\n|\n)/g, '<br/>');
 				$("textarea[name='contents']").val(text);
-				form.submit();
 				
 				text = null;
 				text = $("#inputCompany").val();
-				var replaceText = [ [ /&/g, "&amp;" ],
-									[ /</g, "&lt;" ], [ />/g, "&gt;" ],
-									[ /"/g, "&quot;" ] ];
 				for ( var i in replaceText) {
-					text = text.replace(replaceText[i][0],replaceText[i][1]);
+					text = text.replace(replaceText[i][0], 
+							replaceText[i][1]);
 				}
-				text = text.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
-				text = $("#inputCompany").val(text);
+				$("#inputCompany").val(text);
+				
+				form.submit();
 			});
 		    
 });

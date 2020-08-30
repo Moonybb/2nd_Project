@@ -74,6 +74,8 @@ button {
 	margin-left: 720px;
 }
 </style>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="script/btnsHider.js"></script>
 </head>
 <body>
 	<%@ include file="/template/header.jspf"%>
@@ -81,7 +83,8 @@ button {
 	<div id="content">
 		<!-- content start -->
 		<h1>채용공고</h1>
-		<button onclick="location.href='jobNoticeWrite.jb'">글쓰기</button>
+		<button onclick="location.href='jobNoticeWrite.jb'" name="btns">글쓰기</button>
+		<input type="hidden"  id="isManager" value="<c:out value="${level }"/>">
 		<table>
 			<tr>
 				<th id="jobNoticeNum">글번호</th>

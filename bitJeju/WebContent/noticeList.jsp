@@ -95,6 +95,8 @@
     	height: 25px;
     }
 </style>
+<script type="text/javascript" src="js/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="script/btnsHider.js"></script>
 </head>
 <body>
 	<%@ include file="/template/header.jspf" %>
@@ -102,7 +104,8 @@
 	<div id="content">
 		<!-- content start -->
 		<h1>공지사항</h1>
-			<button class="button" onclick="location.href='noticeWrite.jb'">글쓰기</button>
+			<button class="button" onclick="location.href='noticeWrite.jb'" name="btns">글쓰기</button>
+			<input type="hidden"  id="isManager" value="<c:out value="${level }"/>">
 		<table>
 			<tr>
 				<th id="num">글번호</th>

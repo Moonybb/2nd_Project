@@ -4,7 +4,7 @@ $(document).ready(function() {
 							[ /</g, "&lt;" ], [ />/g, "&gt;" ],
 							[ /"/g, "&quot;" ] ];
 		for ( var i in replaceText) {
-			text = text.replace(replaceText[i][1],replaceText[i][0]);
+			//text = text.replace(replaceText[i][1],replaceText[i][0]);
 		}
 		text = text.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
 		console.log(text);
@@ -18,7 +18,7 @@ $(document).ready(function() {
 			
 			text = $("input[name='title']").val();
 			for ( var i in replaceText) {
-				text = text.replace(replaceText[i][0],
+				text = text.replace(replaceText[i][0], 
 						replaceText[i][1]);
 			}
 			$("input[name='title']").val(text);
@@ -26,18 +26,20 @@ $(document).ready(function() {
 			text = null;
 			text = $("textarea[name='contents']").val();
 			for ( var i in replaceText) {
-				text = text.replace(replaceText[i][0],
+				text = text.replace(replaceText[i][0], 
 						replaceText[i][1]);
 			}
 			text = text.replace(/(\r\n|\n)/g, '<br/>');
 			$("textarea[name='contents']").val(text);
-			form.submit();
+			
 			text = null;
 			text = $("#inputCompany").val();
 			for ( var i in replaceText) {
-				text = text.replace(replaceText[i][0],replaceText[i][1]);
+				text = text.replace(replaceText[i][0], 
+						replaceText[i][1]);
 			}
-			text = text.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
-			text = $("#inputCompany").val(text);
+			$("#inputCompany").val(text);
+			
+			form.submit();
 		});
 	});

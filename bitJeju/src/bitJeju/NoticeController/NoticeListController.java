@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bitJeju.model.Dao;
 import bitJeju.model.NoticeDto;
@@ -23,7 +24,6 @@ public class NoticeListController extends HttpServlet {
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		String action = request.getParameter("searchType");
-		System.out.println("@@@@@@@action:"+action);
 		String param = request.getParameter("pgNum");
 		int count = 0;
 		String linkStr = "";
